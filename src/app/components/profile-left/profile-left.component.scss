@@ -4,6 +4,7 @@
   border-radius: 0;
   border: 0;
 }
+.avatar-wrap{position:relative;width:296px}
 .avatar {
   width: 296px;
   height: 296px;
@@ -11,8 +12,17 @@
   object-fit: cover;
   margin-bottom: 16px;
 }
+.edit-avatar{position:absolute;right:14px;bottom:24px;width:32px;height:32px;border-radius:999px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.06)}
+.edit-avatar svg{width:16px;height:16px;fill:#57606a}
 h2{margin: 0 0 6px 0; font-size: 26px; font-weight: 600;}
+.handle{color:#57606a;margin:-2px 0 12px 0}
 .bio{color: var(--muted); margin: 0 0 12px 0; line-height: 1.4;}
+.btn{border:1px solid var(--border);background:#f6f8fa;border-radius:6px;padding:6px 12px;cursor:pointer}
+.btn.primary{background:#f6f8fa}
+.w-full{width:100%}
+.follow-row{display:flex;align-items:center;gap:8px;color:#57606a;margin:12px 0}
+.follow-row .ico{width:16px;height:16px;fill:#57606a}
+.follow-row .dot{color:#d0d7de}
 .meta {
   list-style: none;
   padding: 0;
@@ -21,6 +31,11 @@ h2{margin: 0 0 6px 0; font-size: 26px; font-weight: 600;}
   gap: 6px;
   color: var(--muted);
 }
+.details{list-style:none;padding:0;margin:8px 0;display:grid;gap:8px;color:#24292f}
+.details li{display:flex;align-items:center;gap:8px}
+.details .ico{width:16px;height:16px;fill:#57606a}
+.details a{color:#0969da;text-decoration:none}
+.sep{height:1px;background:var(--border);margin:16px 0}
 .stats {
   margin-top: 12px;
   display: grid;

@@ -1,33 +1,53 @@
-<div class="profile-card" *ngIf="!loading() && user()">
-  <img class="avatar" [src]="user()?.avatar_url" alt="avatar" />
-  <h2>{{ user()?.name || user()?.login }}</h2>
-  <p class="bio" *ngIf="user()?.bio">{{ user()?.bio }}</p>
+<div class="profile-card" *ngIf="!loading()">
+  <div class="avatar-wrap">
+    <img class="avatar" [src]="user()?.avatar_url || 'https://avatars.githubusercontent.com/u/1?v=4'" alt="avatar" />
+    <button class="edit-avatar" aria-label="Edit">
+      <svg viewBox="0 0 16 16"><path d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0l.318.318.318-.318a4.5 4.5 0 1 1 6.364 6.364L11 19l-6.682-6.318a4.5 4.5 0 0 1 0-6.364Z"/></svg>
+    </button>
+  </div>
 
-  <ul class="meta">
-    <li *ngIf="user()?.location">📍 {{ user()?.location }}</li>
-    <li *ngIf="user()?.company">🏢 {{ user()?.company }}</li>
-    <li *ngIf="user()?.blog">🔗 <a [href]="user()?.blog" target="_blank">{{ user()?.blog }}</a></li>
+  <h2>Shreeram Kushwaha</h2>
+  <div class="handle">shreeramk</div>
+
+  <p class="bio">Director of Engineering &#64;UptimeAI
+  Python, Angular, Javascript, NodeJS, MongoDB, Influx DB, TimescaleDB,
+  Streamsets, Kafka, AWS, Azure, HTML5, CSS</p>
+
+  <button class="btn primary w-full">Edit profile</button>
+
+  <div class="follow-row">
+    <svg viewBox="0 0 16 16" class="ico"><path d="M10.5 7a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM1.5 13.5a5.5 5.5 0 0 1 11 0v.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V13.5Z"/></svg>
+    <span><strong>11</strong> followers</span>
+    <span class="dot">•</span>
+    <span><strong>3</strong> following</span>
+  </div>
+
+  <ul class="details">
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M1.75 2.5h12.5v10.5H1.75Z"/></svg> UptimeAI</li>
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.375 4.5 8.5 4.5 8.5s4.5-5.125 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg> Bangalore, India</li>
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M1.75 3h12.5v10H1.75Z"/></svg> kushwaha.shreeram&#64;gmail.com</li>
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Z"/></svg> <a href="http://shreeramk.com" target="_blank">http://shreeramk.com</a></li>
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M3 2h10v12H3Z"/></svg> in/shreeramkushwaha</li>
+    <li><svg viewBox="0 0 16 16" class="ico muted"><path d="M2 3h12v10H2Z"/></svg> &#64;pom_fret</li>
   </ul>
 
-  <div class="stats">
-    <div><strong>{{ user()?.followers }}</strong><small>Followers</small></div>
-    <div><strong>{{ user()?.following }}</strong><small>Following</small></div>
-    <div><strong>{{ user()?.public_repos }}</strong><small>Repos</small></div>
-  </div>
+  <div class="sep"></div>
 
   <section class="achievements">
     <h3>Achievements</h3>
     <div class="badges">
-      <span class="badge">🏆</span>
-      <span class="badge">💡</span>
-      <span class="badge">😺</span>
+      <span class="badge">🏅</span>
+      <span class="badge">🪙</span>
+      <span class="badge">🎖️</span>
     </div>
   </section>
+
+  <div class="sep"></div>
 
   <section class="orgs">
     <h3>Organizations</h3>
     <div class="org-list">
-      <span class="org-avatar" title="Org"></span>
+      <span class="org-avatar" title="UptimeAI"></span>
     </div>
   </section>
 </div>
