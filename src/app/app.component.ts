@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProfileLeftComponent } from './components/profile-left/profile-left.component';
@@ -6,6 +6,8 @@ import { ContributionsChartComponent } from './components/contributions-chart/co
 import { TabsComponent } from './components/tabs/tabs.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ReposGridComponent } from './components/repos-grid/repos-grid.component';
+import { Meta, Title } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -215,7 +217,37 @@ import { ReposGridComponent } from './components/repos-grid/repos-grid.component
     .site-footer .links a:hover{text-decoration:underline}
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'github-profile-angular';
   year = new Date().getFullYear();
+
+  constructor(private titleSrv: Title, private meta: Meta) {}
+
+  ngOnInit(): void {
+    const username = environment.githubUsername || 'profile';
+    const pageTitle = `${username} · GitHub Profile`;
+    const desc = `Profile of ${username}: repositories, contributions heatmap, activity overview, and more.`;
+    const url = typeof window !== 'undefined' ? window.location.href : '/';
+
+    this.titleSrv.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: desc });
+    this.meta.updateTag({ name: 'theme-color', content: '#ffffff' });
+
+    // Open Graph
+    this.meta.updateTag({ property: 'og:type', content: 'profile' });
+    this.meta.updateTag({ property: 'og:title', content: pageTitle });
+    this.meta.updateTag({ property: 'og:description', content: desc });
+    this.meta.updateTag({ property: 'og:url', content: url });
+
+    // Twitter
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
+    this.meta.updateTag({ name: 'twitter:description', content: desc });
+
+    // Canonical link
+    const link = document.querySelector("link[rel='canonical']") || document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', url);
+    if (!link.parentNode) document.head.appendChild(link);
+  }
 }
