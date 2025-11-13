@@ -1,27 +1,59 @@
-# GithubProfileAngular
+# GitHub Profile Angular (Assignment)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+**Purpose:** Angular (v17+) app replicating a GitHub profile page UI with:
+- Left-panel profile via GitHub REST API
+- Contribution heatmap via GitHub GraphQL (fallback to mock)
+- Tabs: Repositories / Projects / Packages
 
-## Development server
+## Features
+- Fetch profile from `https://api.github.com/users/:username`
+- Contribution heatmap using ECharts and GraphQL `contributionsCollection.contributionCalendar`
+- Responsive two-column layout (collapses on small screens)
+- Mock contributions when no token is provided
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Prerequisites
+- Node.js v20.x
+- npm v10+
+- Angular CLI 17.x
 
-## Code scaffolding
+## Setup
+```bash
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Configure username and token
+Edit `src/environments/environment.ts`:
+```ts
+export const environment = {
+  production: false,
+  githubUsername: 'shreeramk',
+  githubToken: '' // paste a personal access token locally if you want real contributions
+};
+```
+Token scopes: `read:user` (GraphQL needs auth). Do NOT commit tokens.
+
+## Run
+```bash
+npm start
+# then open http://localhost:4200
+```
 
 ## Build
+```bash
+npm run build
+# dist/github-profile-angular
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tests (optional)
+```bash
+npm test
+```
 
-## Running unit tests
+## Deployment
+- Netlify/Vercel build command: `npm run build`
+- Publish directory: `dist/github-profile-angular`
+- For public demos, prefer mock contributions (do not expose PAT in client).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Notes
+- If GraphQL fails or no token, the heatmap uses mock data.
+- ECharts container has fixed height to render the calendar.

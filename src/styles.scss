@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+  --bg:#f6f8fa;
+  --card:#ffffff;
+  --border:#d0d7de;
+  --text:#24292f;
+  --muted:#57606a;
+  --link:#0969da;
+}
+html{font-size:14px}
+body{
+  margin:0;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:var(--link);text-decoration:none}

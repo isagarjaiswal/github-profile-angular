@@ -1,0 +1,36 @@
+<div class="profile-card" *ngIf="!loading() && user()">
+  <img class="avatar" [src]="user()?.avatar_url" alt="avatar" />
+  <h2>{{ user()?.name || user()?.login }}</h2>
+  <p class="bio" *ngIf="user()?.bio">{{ user()?.bio }}</p>
+
+  <ul class="meta">
+    <li *ngIf="user()?.location">📍 {{ user()?.location }}</li>
+    <li *ngIf="user()?.company">🏢 {{ user()?.company }}</li>
+    <li *ngIf="user()?.blog">🔗 <a [href]="user()?.blog" target="_blank">{{ user()?.blog }}</a></li>
+  </ul>
+
+  <div class="stats">
+    <div><strong>{{ user()?.followers }}</strong><small>Followers</small></div>
+    <div><strong>{{ user()?.following }}</strong><small>Following</small></div>
+    <div><strong>{{ user()?.public_repos }}</strong><small>Repos</small></div>
+  </div>
+
+  <section class="achievements">
+    <h3>Achievements</h3>
+    <div class="badges">
+      <span class="badge">🏆</span>
+      <span class="badge">💡</span>
+      <span class="badge">😺</span>
+    </div>
+  </section>
+
+  <section class="orgs">
+    <h3>Organizations</h3>
+    <div class="org-list">
+      <span class="org-avatar" title="Org"></span>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="loading()" class="loading">Loading profile…</div>
+<div *ngIf="error()" class="error">{{ error() }}</div>
